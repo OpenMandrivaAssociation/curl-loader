@@ -1,12 +1,12 @@
 Summary:	A HTTP(S)/FTP(S) application load stress testing tool
 Name:		curl-loader
-Version:	0.50
-Release:	%mkrel 3
+Version:	0.53
+Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Servers
 URL:		http://curl-loader.sourceforge.net/
-Source0:	http://sunet.dl.sourceforge.net/project/curl-loader/curl-loader/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:		curl-loader-0.50-linkage_fixes.diff
+Source0:	http://sunet.dl.sourceforge.net/project/curl-loader/curl-loader/%{name}-%{version}/%{name}-%{version}.tar.bz2
+Patch0:		curl-loader-0.53-link.patch
 Patch1:		curl-loader-0.50-hack.diff
 BuildRequires:	curl-devel >= 7.19.6
 BuildRequires:	libevent-devel >= 1.4.11
@@ -19,9 +19,8 @@ application load and application behavior of thousands and tens of thousand
 HTTP/HTTPS and FTP/FTPS clients, each with its own source IP-address.
 
 %prep
-
 %setup -q
-%patch0 -p0
+%patch0 -p0 -b .link
 %patch1 -p0
 
 %build
@@ -44,7 +43,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc doc/COPYING doc/HOWTOS doc/PROBLEM-REPORTING doc/QUICK-START doc/README doc/THANKS doc/TODO conf-examples
+%doc doc/COPYING doc/PROBLEM-REPORTING doc/QUICK-START doc/README doc/THANKS doc/TODO conf-examples
 %{_sbindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man5/*
