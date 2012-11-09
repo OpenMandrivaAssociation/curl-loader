@@ -1,0 +1,13 @@
+--- loader.c	2009-08-24 08:12:38.000000000 +0200
++++ loader.c.oden	2009-12-22 13:34:12.399320101 +0100
+@@ -1238,9 +1238,7 @@ static int client_tracing_function (CURL
+ 	  if (verbose_logging > 1 || startswith(data,"About") ||
+ 	   startswith(data,"Closing"))
+ 	    write_log("==",(char *)data);
+-      break;
+-
+-    case CURLINFO_ERROR:
++      if (!verbose_logging)
+       write_log("!! ERR",(char *)data);
+ 
+       cctx->client_state = CSTATE_ERROR;

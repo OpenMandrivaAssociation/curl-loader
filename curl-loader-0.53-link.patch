@@ -1,0 +1,29 @@
+--- Makefile.link	2011-02-27 18:30:57.000000000 +0100
++++ Makefile	2011-03-19 12:36:44.000000000 +0100
+@@ -80,15 +80,12 @@
+ LDFLAGS=-L./lib -L$(OPENSSLDIR)/lib
+ 
+ # Link Libraries. In some cases, plese add -lidn, or -lldap
+-LIBS= -ldl -lpthread -lrt -lcurl -levent -lz -lssl -lcrypto -lcares
++LIBS= -lpthread -lcurl -levent -lcrypto
+ 
+ # Include directories
+-INCDIR=-I. -I./inc -I$(OPENSSLDIR)/include
++INCDIR=-I. -I./inc -I$(OPENSSLDIR)/include -I/usr/include/curl -I/usr/include/openssl
+ 
+ # Targets
+-LIBCARES:=./lib/libcares.a
+-LIBCURL:=./lib/libcurl.a
+-LIBEVENT:=./lib/libevent.a
+ 
+ # documentation directory
+ DOCDIR=/usr/share/doc/curl-loader/
+@@ -98,7 +95,7 @@
+ 
+ all: $(TARGET)
+ 
+-$(TARGET): $(LIBCARES) $(LIBCURL) $(LIBEVENT)  $(CONF_OBJ) $(OBJ)
++$(TARGET): $(CONF_OBJ) $(OBJ)
+ 	$(LD) $(PROF_FLAG) $(DEBUG_FLAGS) $(OPT_FLAGS) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
+ 
+ nobuildcurl: $(OBJ)
