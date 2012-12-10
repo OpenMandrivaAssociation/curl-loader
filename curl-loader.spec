@@ -48,3 +48,24 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 %{_mandir}/man5/*
 
+
+
+%changelog
+* Sat Mar 19 2011 Funda Wang <fwang@mandriva.org> 0.53-1mdv2011.0
++ Revision: 646702
+- new version 0.53
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - rebuild
+
+* Wed Apr 21 2010 Funda Wang <fwang@mandriva.org> 0.50-2mdv2010.1
++ Revision: 537461
+- rebuild
+
+* Tue Dec 22 2009 Oden Eriksson <oeriksson@mandriva.com> 0.50-1mdv2010.1
++ Revision: 481322
+- import curl-loader
+
+
+* Tue Dec 22 2009 Oden Eriksson <oeriksson@mandriva.com> 0.50-1mdv2010.0
+- initial Mandriva package
