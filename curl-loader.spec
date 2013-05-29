@@ -1,17 +1,16 @@
 Summary:	A HTTP(S)/FTP(S) application load stress testing tool
 Name:		curl-loader
 Version:	0.53
-Release:	%mkrel 1
+Release:	1
 License:	GPLv2
 Group:		System/Servers
-URL:		http://curl-loader.sourceforge.net/
+Url:		http://curl-loader.sourceforge.net/
 Source0:	http://sunet.dl.sourceforge.net/project/curl-loader/curl-loader/%{name}-%{version}/%{name}-%{version}.tar.bz2
 Patch0:		curl-loader-0.53-link.patch
 Patch1:		curl-loader-0.50-hack.diff
-BuildRequires:	curl-devel >= 7.19.6
-BuildRequires:	libevent-devel >= 1.4.11
-BuildRequires:	openssl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libevent)
+BuildRequires:	pkgconfig(openssl)
 
 %description
 curl-loader is an open-source community tool written in C-language, simulating 
@@ -28,8 +27,6 @@ HTTP/HTTPS and FTP/FTPS clients, each with its own source IP-address.
 %make OPT_FLAGS="%{optflags}" INCDIR="-I. -I%{_includedir}/curl -I%{_includedir}/openssl" LDFLAGS="%{ldflags}"
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_sbindir}
 install -d %{buildroot}%{_mandir}/man1
 install -d %{buildroot}%{_mandir}/man5
@@ -38,34 +35,9 @@ install -m0755 %{name} %{buildroot}%{_sbindir}/
 install -m0644 doc/curl-loader.1 %{buildroot}%{_mandir}/man1/
 install -m0644 doc/curl-loader-config.5 %{buildroot}%{_mandir}/man5/
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc doc/COPYING doc/PROBLEM-REPORTING doc/QUICK-START doc/README doc/THANKS doc/TODO conf-examples
 %{_sbindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man5/*
 
-
-
-%changelog
-* Sat Mar 19 2011 Funda Wang <fwang@mandriva.org> 0.53-1mdv2011.0
-+ Revision: 646702
-- new version 0.53
-
-  + Oden Eriksson <oeriksson@mandriva.com>
-    - rebuild
-
-* Wed Apr 21 2010 Funda Wang <fwang@mandriva.org> 0.50-2mdv2010.1
-+ Revision: 537461
-- rebuild
-
-* Tue Dec 22 2009 Oden Eriksson <oeriksson@mandriva.com> 0.50-1mdv2010.1
-+ Revision: 481322
-- import curl-loader
-
-
-* Tue Dec 22 2009 Oden Eriksson <oeriksson@mandriva.com> 0.50-1mdv2010.0
-- initial Mandriva package
