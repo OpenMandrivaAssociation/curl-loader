@@ -6,8 +6,8 @@ License:	GPLv2
 Group:		System/Servers
 Url:		http://curl-loader.sourceforge.net/
 Source0:	http://sunet.dl.sourceforge.net/project/curl-loader/curl-loader/%{name}-%{version}/%{name}-%{version}.tar.bz2
-Patch0:		curl-loader-0.53-link.patch
-Patch1:		curl-loader-0.50-hack.diff
+#Patch0:		curl-loader-0.53-link.patch
+#Patch1:		curl-loader-0.50-hack.diff
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libevent)
 BuildRequires:	pkgconfig(openssl)
@@ -19,8 +19,8 @@ HTTP/HTTPS and FTP/FTPS clients, each with its own source IP-address.
 
 %prep
 %setup -q
-%patch0 -p0 -b .link
-%patch1 -p0
+#patch0 -p0 -b .link
+#patch1 -p0
 
 %build
 
