@@ -1,7 +1,7 @@
 Summary:	A HTTP(S)/FTP(S) application load stress testing tool
 Name:		curl-loader
-Version:	0.53
-Release:	3
+Version:	0.56
+Release:	1
 License:	GPLv2
 Group:		System/Servers
 Url:		http://curl-loader.sourceforge.net/
