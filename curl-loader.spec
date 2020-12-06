@@ -23,6 +23,7 @@ HTTP/HTTPS and FTP/FTPS clients, each with its own source IP-address.
 %patch1 -p0
 
 %build
+sed -i -e 's|-mmmx -msse||' -e 's|./lib/libcares.a|/usr/lib64/libcares.so|' -e 's|./lib/libcurl.a|/usr/lib64/libcurl.so|' -e 's|./lib/libevent.a|/usr/lib64/libevent.so|' Makefile
 
 %make OPT_FLAGS="%{optflags}" INCDIR="-I. -I%{_includedir}/curl -I%{_includedir}/openssl" LDFLAGS="%{ldflags}"
 
