@@ -1,16 +1,19 @@
 Summary:	A HTTP(S)/FTP(S) application load stress testing tool
 Name:		curl-loader
-Version:	0.53
-Release:	3
+Version:	0.56
+Release:	1
 License:	GPLv2
 Group:		System/Servers
 Url:		http://curl-loader.sourceforge.net/
 Source0:	http://sunet.dl.sourceforge.net/project/curl-loader/curl-loader/%{name}-%{version}/%{name}-%{version}.tar.bz2
-Patch0:		curl-loader-0.53-link.patch
+#Patch0:		curl-loader-0.53-link.patch
 Patch1:		curl-loader-0.50-hack.diff
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libevent)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(libcares)
+BuildRequires:  pkgconfig(libnsl)
 
 %description
 curl-loader is an open-source community tool written in C-language, simulating 
@@ -19,10 +22,11 @@ HTTP/HTTPS and FTP/FTPS clients, each with its own source IP-address.
 
 %prep
 %setup -q
-%patch0 -p0 -b .link
+#patch0 -p0 -b .link
 %patch1 -p0
 
 %build
+sed -i -e 's|-mmmx -msse||' -e 's|./lib/libcares.a|/usr/lib64/libcares.so|' -e 's|./lib/libcurl.a|/usr/lib64/libcurl.so|' -e 's|./lib/libevent.a|/usr/lib64/libevent.so|' Makefile
 
 %make OPT_FLAGS="%{optflags}" INCDIR="-I. -I%{_includedir}/curl -I%{_includedir}/openssl" LDFLAGS="%{ldflags}"
 
