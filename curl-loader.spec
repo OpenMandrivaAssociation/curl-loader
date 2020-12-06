@@ -11,6 +11,9 @@ Patch1:		curl-loader-0.50-hack.diff
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libevent)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(libcares)
+BuildRequires:  pkgconfig(libnsl)
 
 %description
 curl-loader is an open-source community tool written in C-language, simulating 
